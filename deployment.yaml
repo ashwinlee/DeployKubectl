@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloapp
+  labels:
+    app: helloapp
+spec:
+  replicas: 3        
+  selector:
+    matchLabels:
+      app: helloapp
+  template:
+    metadata:
+      labels:
+        app: helloapp
+    spec:
+      containers:
+      - name: hello-world-app
+        image: ashwinchandar/hello-world-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: regcred
